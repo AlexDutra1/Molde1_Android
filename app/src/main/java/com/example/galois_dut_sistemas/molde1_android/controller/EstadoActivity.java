@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.example.galois_dut_sistemas.molde1_android.R;
 import com.example.galois_dut_sistemas.molde1_android.model.Estado;
+import com.example.galois_dut_sistemas.molde1_android.service_e_bo.EstadoServiceBO;
 
 /**
  * Created by galois on 09/04/16.
@@ -18,6 +19,7 @@ import com.example.galois_dut_sistemas.molde1_android.model.Estado;
 public class EstadoActivity extends Activity {
 
     private EstadoForm formulario=new EstadoForm();
+    private EstadoServiceBO serviceBO=new EstadoServiceBO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,10 @@ public class EstadoActivity extends Activity {
 
                 System.out.println("NOME: " + formulario.getEstado().getNome());
                 System.out.println("SIGLA: " + formulario.getEstado().getSigla());
+
+                //PERSISTE OS DADOS
+                serviceBO.getDao().insereDado(formulario.getEstado().getNome(),
+                        formulario.getEstado().getSigla());
 
             }
 

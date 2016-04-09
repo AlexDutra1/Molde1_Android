@@ -10,11 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CriaBanco extends SQLiteOpenHelper {
 
     public static final String NOME_BANCO = "banco.db";
-    public static final String TABELA = "livros";
-    public static final String ID = "_id";
-    public static final String TITULO = "titulo";
-    public static final String AUTOR = "autor";
-    public static final String EDITORA = "editora";
+    public static final String TABELA = "estados";
+    public static final String ID = "id_estado";
+    public static final String NOME = "nome";
+    public static final String SIGLA = "sigla";
     public static final int VERSAO = 1;
 
     public CriaBanco(Context context){
@@ -22,12 +21,23 @@ public class CriaBanco extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
+
+        String sql = "CREATE TABLE "+TABELA+"("
+                + ID + " integer primary key autoincrement,"
+                + NOME + " text,"
+                + SIGLA + " text"
+                +")";
+
+        //String sql2;
+
+        db.execSQL(sql);
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS" + TABELA);
+        onCreate(db);
     }
 }

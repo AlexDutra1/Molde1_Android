@@ -1,5 +1,6 @@
 package com.example.galois_dut_sistemas.molde1_android.persistence;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -14,4 +15,33 @@ public class EstadoDAO {
     public EstadoDAO(Context context){
         banco = new CriaBanco(context);
     }
+
+    public String insereDado(String nome, String sigla){
+
+        ContentValues valores;
+        long resultado;
+
+        db = banco.getWritableDatabase();
+        valores = new ContentValues();
+        valores.put(CriaBanco.NOME, nome);
+        valores.put(CriaBanco.SIGLA, sigla);
+
+        System.out.println("Dentro de valores: " + CriaBanco.NOME);
+        System.out.println("Dentro de valores: " + CriaBanco.SIGLA);
+
+        resultado = db.insertOrThrow(CriaBanco.TABELA, null, valores);
+
+        db.close();
+
+        if (resultado ==-1)
+        {
+            return "Erro ao inserir registro";
+        }
+
+        else
+        {
+            return "Registro Inserido com sucesso ";
+        }
+    }
+
 }
