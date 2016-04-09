@@ -17,29 +17,23 @@ import com.example.galois_dut_sistemas.molde1_android.model.Estado;
  */
 public class EstadoActivity extends Activity {
 
-    EstadoForm formulario=new EstadoForm();
+    private EstadoForm formulario=new EstadoForm();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastra_estado);
 
-        EditText nomeEstado = (EditText) findViewById(R.id.editTextNomeEstado);
-        EditText siglaEstado = (EditText) findViewById(R.id.editTextSiglaEstado);
-
-        System.out.println("NOME ANTES: " + nomeEstado.getText().toString());
-        System.out.println("SIGLA ANTES: " + siglaEstado.getText().toString());
-
-        formulario.getEstado().setNome(nomeEstado.getText().toString());
-        formulario.getEstado().setSigla(siglaEstado.getText().toString());
-
-        System.out.println("NOME: " + nomeEstado.getText().toString());
-        System.out.println("SIGLA: " + siglaEstado.getText().toString());
-
         Button btCadastrar = (Button) findViewById(R.id.buttonEfetuarCadastro);
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                EditText nomeEstado = (EditText) findViewById(R.id.editTextNomeEstado);
+                EditText siglaEstado = (EditText) findViewById(R.id.editTextSiglaEstado);
+
+                formulario.getEstado().setNome(nomeEstado.getText().toString());
+                formulario.getEstado().setSigla(siglaEstado.getText().toString());
 
                 System.out.println("NOME: " + formulario.getEstado().getNome());
                 System.out.println("SIGLA: " + formulario.getEstado().getSigla());
