@@ -11,7 +11,7 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     public static final String NOME_BANCO = "banco.db";
     public static final String TABELA = "estados";
-    public static final String ID = "id_estado";
+    public static final String ID = "_id"; //Convencao de identificador
     public static final String NOME = "nome";
     public static final String SIGLA = "sigla";
     public static final int VERSAO = 1;

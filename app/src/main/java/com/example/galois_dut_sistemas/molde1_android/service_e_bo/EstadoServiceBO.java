@@ -1,5 +1,7 @@
 package com.example.galois_dut_sistemas.molde1_android.service_e_bo;
 
+import android.content.Context;
+
 import com.example.galois_dut_sistemas.molde1_android.persistence.EstadoDAO;
 
 /**
@@ -7,7 +9,12 @@ import com.example.galois_dut_sistemas.molde1_android.persistence.EstadoDAO;
  */
 public class EstadoServiceBO {
 
-    private EstadoDAO dao= new EstadoDAO(null);
+    private EstadoDAO dao;
+
+    //Repassa o contexto até o DAO
+    public EstadoServiceBO(Context contexto){
+        dao = new EstadoDAO(contexto);
+    }
 
     public EstadoDAO getDao() {
         return dao;
@@ -16,5 +23,16 @@ public class EstadoServiceBO {
     public void setDao(EstadoDAO dao) {
         this.dao = dao;
     }
+
+
+
+   /* public EstadoDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(EstadoDAO dao) {
+        this.dao = dao;
+    }*/
+
 
 }

@@ -16,6 +16,7 @@ public class EstadoDAO {
         banco = new CriaBanco(context);
     }
 
+
     public String insereDado(String nome, String sigla){
 
         ContentValues valores;

@@ -1,6 +1,8 @@
 package com.example.galois_dut_sistemas.molde1_android.controller;
 
 import android.app.Activity;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +13,8 @@ import android.widget.EditText;
 
 import com.example.galois_dut_sistemas.molde1_android.R;
 import com.example.galois_dut_sistemas.molde1_android.model.Estado;
+import com.example.galois_dut_sistemas.molde1_android.persistence.CriaBanco;
+import com.example.galois_dut_sistemas.molde1_android.persistence.EstadoDAO;
 import com.example.galois_dut_sistemas.molde1_android.service_e_bo.EstadoServiceBO;
 
 /**
@@ -19,7 +23,7 @@ import com.example.galois_dut_sistemas.molde1_android.service_e_bo.EstadoService
 public class EstadoActivity extends Activity {
 
     private EstadoForm formulario=new EstadoForm();
-    private EstadoServiceBO serviceBO=new EstadoServiceBO();
+    private EstadoServiceBO serviceBO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +45,17 @@ public class EstadoActivity extends Activity {
                 System.out.println("SIGLA: " + formulario.getEstado().getSigla());
 
                 //PERSISTE OS DADOS
+/*
+
+                EstadoDAO crud = new EstadoDAO(getBaseContext());
+                crud.insereDado(formulario.getEstado().getNome(),
+                        formulario.getEstado().getSigla());
+*/
+                serviceBO=new EstadoServiceBO(getBaseContext());
                 serviceBO.getDao().insereDado(formulario.getEstado().getNome(),
                         formulario.getEstado().getSigla());
+
+
 
             }
 
