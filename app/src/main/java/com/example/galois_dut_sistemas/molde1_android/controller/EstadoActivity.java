@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.galois_dut_sistemas.molde1_android.R;
 import com.example.galois_dut_sistemas.molde1_android.model.Estado;
@@ -52,10 +53,13 @@ public class EstadoActivity extends Activity {
                         formulario.getEstado().getSigla());
 */
                 serviceBO=new EstadoServiceBO(getBaseContext());
-                serviceBO.getDao().insereDado(formulario.getEstado().getNome(),
+                String resultado=serviceBO.getDao().insereDado(formulario.getEstado().getNome(),
                         formulario.getEstado().getSigla());
 
+                //Exibe FAIXA DE MODAL NO RODAPÉ
+                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
+                System.out.println("MENSAGEM: " + resultado);
 
             }
 
