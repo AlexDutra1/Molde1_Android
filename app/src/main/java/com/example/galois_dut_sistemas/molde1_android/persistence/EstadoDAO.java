@@ -27,9 +27,6 @@ public class EstadoDAO {
         valores.put(CriaBanco.NOME, nome);
         valores.put(CriaBanco.SIGLA, sigla);
 
-        System.out.println("Dentro de valores: " + CriaBanco.NOME);
-        System.out.println("Dentro de valores: " + CriaBanco.SIGLA);
-
         resultado = db.insertOrThrow(CriaBanco.TABELA, null, valores);
 
         db.close();

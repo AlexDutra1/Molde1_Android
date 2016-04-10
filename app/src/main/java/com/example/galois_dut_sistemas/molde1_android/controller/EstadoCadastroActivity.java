@@ -21,7 +21,7 @@ import com.example.galois_dut_sistemas.molde1_android.service_e_bo.EstadoService
 /**
  * Created by galois on 09/04/16.
  */
-public class EstadoActivity extends Activity {
+public class EstadoCadastroActivity extends Activity {
 
     private EstadoForm formulario=new EstadoForm();
     private EstadoServiceBO serviceBO;
@@ -46,20 +46,12 @@ public class EstadoActivity extends Activity {
                 System.out.println("SIGLA: " + formulario.getEstado().getSigla());
 
                 //PERSISTE OS DADOS
-/*
-
-                EstadoDAO crud = new EstadoDAO(getBaseContext());
-                crud.insereDado(formulario.getEstado().getNome(),
-                        formulario.getEstado().getSigla());
-*/
                 serviceBO=new EstadoServiceBO(getBaseContext());
                 String resultado=serviceBO.getDao().insereDado(formulario.getEstado().getNome(),
                         formulario.getEstado().getSigla());
 
                 //Exibe FAIXA DE MODAL NO RODAPÉ
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-
-                System.out.println("MENSAGEM: " + resultado);
 
             }
 

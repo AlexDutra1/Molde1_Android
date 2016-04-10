@@ -11,7 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.galois_dut_sistemas.molde1_android.controller.EstadoActivity;
+import com.example.galois_dut_sistemas.molde1_android.controller.EstadoCadastroActivity;
+import com.example.galois_dut_sistemas.molde1_android.controller.MunicipioCadastroActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         //ESTADO
-        Button btCadastrarMunicipio = (Button) findViewById(R.id.buttonCadastrarEstado);
-        btCadastrarMunicipio.setOnClickListener(new View.OnClickListener() {
+        Button btCadastrarEstado = (Button) findViewById(R.id.buttonCadastrarEstado);
+        btCadastrarEstado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this, EstadoActivity.class);
+                Intent intent = new Intent(MainActivity.this, EstadoCadastroActivity.class);
                 startActivity(intent);
 
                 //Finaliza a activity anterior
@@ -54,22 +55,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Button btConsultarMunicipio = (Button) findViewById(R.id.buttonConsultarEstado);
-        btConsultarMunicipio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         //MUNICIPIO
-        Button btCadastrarEstado = (Button) findViewById(R.id.buttonCadastrarMunicipio);
-        btCadastrarEstado.setOnClickListener(new View.OnClickListener() {
+        Button btCadastrarMunicipio = (Button) findViewById(R.id.buttonCadastrarMunicipio);
+        btCadastrarMunicipio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, MunicipioCadastroActivity.class);
+                startActivity(intent);
             }
         });
 
