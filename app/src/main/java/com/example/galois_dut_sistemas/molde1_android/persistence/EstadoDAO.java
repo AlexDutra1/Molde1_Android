@@ -24,10 +24,10 @@ public class EstadoDAO {
 
         db = banco.getWritableDatabase();
         valores = new ContentValues();
-        valores.put(CriaBanco.NOME, nome);
-        valores.put(CriaBanco.SIGLA, sigla);
+        valores.put(Constantes.NOME, nome);
+        valores.put(Constantes.SIGLA, sigla);
 
-        resultado = db.insertOrThrow(CriaBanco.TABELA, null, valores);
+        resultado = db.insertOrThrow(Constantes.TABELA_ESTADOS, null, valores);
 
         db.close();
 

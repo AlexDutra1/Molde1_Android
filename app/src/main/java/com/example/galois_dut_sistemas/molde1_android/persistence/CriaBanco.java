@@ -10,10 +10,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CriaBanco extends SQLiteOpenHelper {
 
     public static final String NOME_BANCO = "banco.db";
-    public static final String TABELA = "estados";
-    public static final String ID = "_id"; //Convencao de identificador
-    public static final String NOME = "nome";
-    public static final String SIGLA = "sigla";
     public static final int VERSAO = 1;
 
     public CriaBanco(Context context){
@@ -23,15 +19,15 @@ public class CriaBanco extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sql = "CREATE TABLE "+TABELA+"("
-                + ID + " integer primary key autoincrement,"
-                + NOME + " text,"
-                + SIGLA + " text"
+        String sql = "CREATE TABLE "+Constantes.TABELA_ESTADOS+"("
+                + Constantes.ID + " integer primary key autoincrement,"
+                + Constantes.NOME + " text,"
+                + Constantes.SIGLA + " text"
                 +")";
 
-        String sql2 = "CREATE TABLE "+TABELA+"("
-                + ID + " integer primary key autoincrement,"
-                + NOME + " text"
+        String sql2 = "CREATE TABLE "+Constantes.TABELA_MUNICIPIOS+"("
+                + Constantes.ID + " integer primary key autoincrement,"
+                + Constantes.NOME + " text"
                 +")";
 
         db.execSQL(sql);
@@ -41,7 +37,8 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + TABELA);
+        db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_ESTADOS);
+        db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_MUNICIPIOS);
         onCreate(db);
     }
 }

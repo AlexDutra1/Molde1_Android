@@ -25,9 +25,9 @@ public class MunicipioDAO {
 
         db = banco.getWritableDatabase();
         valores = new ContentValues();
-        valores.put(CriaBanco.NOME, nome);
+        valores.put(Constantes.NOME, nome);
 
-        resultado = db.insertOrThrow(CriaBanco.TABELA, null, valores);
+        resultado = db.insertOrThrow(Constantes.TABELA_MUNICIPIOS, null, valores);
 
         db.close();
 
