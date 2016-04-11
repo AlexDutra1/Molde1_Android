@@ -12,7 +12,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.galois_dut_sistemas.molde1_android.R;
+import com.example.galois_dut_sistemas.molde1_android.model.Municipio;
 import com.example.galois_dut_sistemas.molde1_android.service_e_bo.EstadoServiceBO;
+import com.example.galois_dut_sistemas.molde1_android.service_e_bo.MunicipioServiceBO;
 
 /**
  * Created by galois on 09/04/16.
@@ -20,6 +22,7 @@ import com.example.galois_dut_sistemas.molde1_android.service_e_bo.EstadoService
 public class MunicipioCadastroActivity extends Activity {
 
     private MunicipioForm formulario= new MunicipioForm();
+    private MunicipioServiceBO serviceBO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +31,27 @@ public class MunicipioCadastroActivity extends Activity {
 
         //IMPLEMENTANDO
         //TESTE
-        String[] arrayLoco={"Peidão","Leitãozin"};
+        String[] arrayLoco=new String[] {"Peidão","Leitãozin"};
 
-        // busca a data atual para mostrar no botão
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lista_estados,
-                android.R.layout.simple_spinner_item);
         Spinner estadoSpinner = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
-        estadoSpinner.setAdapter(adapter);
+
+        ArrayAdapter<String> adapterX=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,arrayLoco);
+        adapterX.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        estadoSpinner.setAdapter(adapterX);
 
         //TESTE PARA PREENCHIMENTO DE SPINNER DINAMICO
-        //String[] cols={android.provider.Contacts.PeopleColumns.NAME};
-        //Cursor cur = managedQuery(android.provider.Contacts.People.CONTENT_URI, cols, null, null);
-        //estadoSpinner.setAdapter(new CursorAdapter(arrayLoco, this));
-
-
+        //EXEMPLO
+        //Creamos el cursor
+        /*
+        Cursor c = baseDatos.rawQuery("select id AS _id, nombre from comidas", null);
+        //Creamos el adaptador
+        SimpleCursorAdapter adapter2 = new SimpleCursorAdapter(this,android.R.layout.simple_spinner_item,c,new String[] {"nombre"},    new int[] {android.R.id.text1});
+        //Añadimos el layout para el menú
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Le indicamos al spinner el adaptador a usar
+        prueba.setAdapter(adapter2);
+        */
         //FIM
 
 

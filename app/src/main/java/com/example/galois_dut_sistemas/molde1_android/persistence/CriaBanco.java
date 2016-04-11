@@ -29,9 +29,13 @@ public class CriaBanco extends SQLiteOpenHelper {
                 + SIGLA + " text"
                 +")";
 
-        //String sql2;
+        String sql2 = "CREATE TABLE "+TABELA+"("
+                + ID + " integer primary key autoincrement,"
+                + NOME + " text"
+                +")";
 
         db.execSQL(sql);
+        db.execSQL(sql2);
 
     }
 

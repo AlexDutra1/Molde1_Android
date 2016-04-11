@@ -4,13 +4,7 @@
     <string name="categoria_gasto">categoria_gasto</string>
     <string name="lista_estados">lista_estados</string>
 
-    <string-array name="lista_estados">
-        <item>Alagoas</item>
-        <item>Goiás</item>
-        <item>Pernambuco</item>
-        <item>São Paulo</item>
-        <item>Outros</item>
-    </string-array>
+
 
 
 </resources>
