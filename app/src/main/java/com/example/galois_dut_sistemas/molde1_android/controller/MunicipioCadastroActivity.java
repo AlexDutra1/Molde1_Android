@@ -3,16 +3,21 @@ package com.example.galois_dut_sistemas.molde1_android.controller;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.galois_dut_sistemas.molde1_android.R;
 import com.example.galois_dut_sistemas.molde1_android.model.Municipio;
+import com.example.galois_dut_sistemas.molde1_android.persistence.Constantes;
+import com.example.galois_dut_sistemas.molde1_android.persistence.CriaBanco;
+import com.example.galois_dut_sistemas.molde1_android.persistence.MunicipioDAO;
 import com.example.galois_dut_sistemas.molde1_android.service_e_bo.EstadoServiceBO;
 import com.example.galois_dut_sistemas.molde1_android.service_e_bo.MunicipioServiceBO;
 
@@ -68,21 +73,38 @@ public class MunicipioCadastroActivity extends Activity {
                 //formulario.getMunicipio().getEstado.(estado.getText().toString());
 
                 System.out.println("NOME: " + formulario.getMunicipio().getNome());
-                //System.out.println("ESTADO: " + estado);
-                //System.out.println("ESTADO: " + formulario.getMunicipio().getEstado().getNome());
+
 
                 //PERSISTE OS DADOS
-                //serviceBO = new EstadoServiceBO(getBaseContext());
-                //String resultado = serviceBO.getDao().insereDado(formulario.getEstado().getNome(),
-                  //      formulario.getEstado().getSigla());
+                serviceBO = new MunicipioServiceBO(getBaseContext());
+                String resultado = serviceBO.getDao().insereDado(formulario.getMunicipio().getNome());
 
                 //Exibe FAIXA DE MODAL NO RODAPÉ
-                //Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
             }
 
         });
 
-
     }
 }
+
+
+        /*
+        ListView lista;
+
+        MunicipioDAO crud = new MunicipioDAO(getBaseContext());
+
+        //A IDE ou a Persistencia pediu para Cursor ser final
+        final Cursor cursor = crud.carregaEstados();
+
+        String[] nomeCampos = new String[] {Constantes.ID, Constantes.NOME_MUNICIPIO};
+        int[] idViews = new int[] {R.id.idMunicipio, R.id.nomeMunicipio};
+
+        //NECESSARIO FAZER O UPDGRADE DA API PARA USAR O SimpleCursorAdapter'
+        SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
+                R.layout.consulta_municipio,cursor,nomeCampos,idViews, 0);
+
+        lista = (ListView)findViewById(R.id.listView);
+        lista.setAdapter(adaptador);
+        */

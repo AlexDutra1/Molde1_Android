@@ -24,7 +24,7 @@ public class EstadoDAO {
 
         db = banco.getWritableDatabase();
         valores = new ContentValues();
-        valores.put(Constantes.NOME, nome);
+        valores.put(Constantes.NOME_ESTADO, nome);
         valores.put(Constantes.SIGLA, sigla);
 
         resultado = db.insertOrThrow(Constantes.TABELA_ESTADOS, null, valores);

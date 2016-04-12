@@ -21,13 +21,13 @@ public class CriaBanco extends SQLiteOpenHelper {
 
         String sql = "CREATE TABLE "+Constantes.TABELA_ESTADOS+"("
                 + Constantes.ID + " integer primary key autoincrement,"
-                + Constantes.NOME + " text,"
+                + Constantes.NOME_ESTADO + " text,"
                 + Constantes.SIGLA + " text"
                 +")";
 
         String sql2 = "CREATE TABLE "+Constantes.TABELA_MUNICIPIOS+"("
                 + Constantes.ID + " integer primary key autoincrement,"
-                + Constantes.NOME + " text"
+                + Constantes.NOME_MUNICIPIO + " text"
                 +")";
 
         db.execSQL(sql);
@@ -37,8 +37,8 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_ESTADOS);
-        db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_MUNICIPIOS);
-        onCreate(db);
+        //db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_ESTADOS);
+        //db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_MUNICIPIOS);
+        //onCreate(db);
     }
 }

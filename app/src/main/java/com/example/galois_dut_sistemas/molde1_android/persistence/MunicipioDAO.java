@@ -2,6 +2,7 @@ package com.example.galois_dut_sistemas.molde1_android.persistence;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.galois_dut_sistemas.molde1_android.model.Municipio;
@@ -25,7 +26,7 @@ public class MunicipioDAO {
 
         db = banco.getWritableDatabase();
         valores = new ContentValues();
-        valores.put(Constantes.NOME, nome);
+        valores.put(Constantes.NOME_MUNICIPIO, nome);
 
         resultado = db.insertOrThrow(Constantes.TABELA_MUNICIPIOS, null, valores);
 
@@ -40,5 +41,20 @@ public class MunicipioDAO {
         {
             return "Registro Inserido com sucesso ";
         }
+    }
+
+    public Cursor carregaEstados(){
+
+        //Retorna dos IDs e dos Titulos
+        Cursor cursor;
+        String[] campos =  {Constantes.ID,Constantes.NOME_MUNICIPIO};
+        db = banco.getReadableDatabase();
+        cursor = db.query(Constantes.TABELA_MUNICIPIOS, campos, null, null, null, null, null, null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
     }
 }

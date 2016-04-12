@@ -11,10 +11,20 @@ import com.example.galois_dut_sistemas.molde1_android.persistence.MunicipioDAO;
  */
 public class MunicipioServiceBO {
 
-    private MunicipioDAO dao;
-
     //Repassa o contexto até o DAO
     public MunicipioServiceBO(Context contexto){
         dao = new MunicipioDAO(contexto);
     }
+
+    public MunicipioDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(MunicipioDAO dao) {
+        this.dao = dao;
+    }
+
+    private MunicipioDAO dao;
+
+
 }
