@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
@@ -37,61 +38,32 @@ public class MunicipioCadastroActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastra_municipio);
 
-        //TESTE PRENCHIMENTO VINDO DO BANCO
-
+        //CARREGA O SPINNER COM NOME DOS ESTADOS
         Spinner estadoSpinner = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
-
-        //PERSISTE OS DADOS
-        //AQUI ABAIXO ESTA COM ERRO
-        //EstadoDAO estadodao=new EstadoDAO(getBaseContext());
-        //Cursor cursor=estadodao.carregaEstados();
 
         serviceBO=new MunicipioServiceBO(getBaseContext());
         Cursor cursor=serviceBO.getEstadoDAO().carregaEstados();
 
-
         String[] queryCols=new String[]{"_id", "nome"};
         String[] adapterCols = new String[]{"nome"};
         int[] adapterRowViews=new int[]{android.R.id.text1};
-        //Cursor cursor=estadodao.carregaEstados();
 
         SimpleCursorAdapter sca=new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, cursor, adapterCols, adapterRowViews,0);
         sca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         estadoSpinner.setAdapter(sca);
 
-
-
-        sca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        estadoSpinner.setAdapter(sca);
-
-
-
-        //IMPLEMENTANDO
-        //FUNCIONANDO
-        /*
-        String[] arrayLoco=new String[] {"Peidão","Leitãozin"};
-
-        Spinner estadoSpinner = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
-
-        ArrayAdapter<String> adapterX=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,arrayLoco);
-        adapterX.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        estadoSpinner.setAdapter(adapterX);
-        */
-
-
-
+        //EFETUA CADASTRO
         Button btCadastrar = (Button) findViewById(R.id.buttonCadastraMunicipio);
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 EditText nomeMunicipio = (EditText) findViewById(R.id.editTextNomeMunicipio);
-                //Spinner estado = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
+
 
                 formulario.getMunicipio().setNome(nomeMunicipio.getText().toString());
-                //formulario.getMunicipio().getEstado.(estado.getText().toString());
+
+                //formulario.getMunicipio().setEstado(nomeestado.getText().toString());
 
                 System.out.println("NOME: " + formulario.getMunicipio().getNome());
 
@@ -108,11 +80,34 @@ public class MunicipioCadastroActivity extends Activity {
         });
 
 
+        //CONVERTER PARA SPINNER
+        //MOSTRA A POSICAO NA LISTA
+        Spinner nomeestado = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
+        nomeestado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            int pos = 0;
+            @Override
+            public void onItemSelected(
+                    AdapterView<?> parent, View view, int position, long id) {
+                pos = position;
+
+                Toast.makeText(getApplicationContext(), "Valor convertido: "+position, Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+
+        });
 
 
 
 
+        }
     }
-}
 
 
