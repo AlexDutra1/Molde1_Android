@@ -2,6 +2,7 @@ package com.example.galois_dut_sistemas.molde1_android.persistence;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
@@ -11,6 +12,7 @@ public class EstadoDAO {
 
     private SQLiteDatabase db;
     private CriaBanco banco;
+    Cursor cursor;
 
     public EstadoDAO(Context context){
         banco = new CriaBanco(context);
@@ -42,4 +44,17 @@ public class EstadoDAO {
         }
     }
 
+    public Cursor carregaEstados(){
+
+        //Retorna dos IDs e dos Titulos
+        String[] campos =  {Constantes.ID,Constantes.NOME_ESTADO};
+        db = banco.getReadableDatabase();
+        cursor = db.query(Constantes.TABELA_ESTADOS, campos, null, null, null, null, null, null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
 }

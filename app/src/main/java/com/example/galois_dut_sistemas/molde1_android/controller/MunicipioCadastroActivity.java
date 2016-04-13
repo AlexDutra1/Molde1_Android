@@ -1,6 +1,7 @@
 package com.example.galois_dut_sistemas.molde1_android.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -13,10 +14,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.galois_dut_sistemas.molde1_android.MainActivity;
 import com.example.galois_dut_sistemas.molde1_android.R;
 import com.example.galois_dut_sistemas.molde1_android.model.Municipio;
 import com.example.galois_dut_sistemas.molde1_android.persistence.Constantes;
 import com.example.galois_dut_sistemas.molde1_android.persistence.CriaBanco;
+import com.example.galois_dut_sistemas.molde1_android.persistence.EstadoDAO;
 import com.example.galois_dut_sistemas.molde1_android.persistence.MunicipioDAO;
 import com.example.galois_dut_sistemas.molde1_android.service_e_bo.EstadoServiceBO;
 import com.example.galois_dut_sistemas.molde1_android.service_e_bo.MunicipioServiceBO;
@@ -34,8 +37,39 @@ public class MunicipioCadastroActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastra_municipio);
 
+        //TESTE PRENCHIMENTO VINDO DO BANCO
+
+        Spinner estadoSpinner = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
+
+        //PERSISTE OS DADOS
+        //AQUI ABAIXO ESTA COM ERRO
+        //EstadoDAO estadodao=new EstadoDAO(getBaseContext());
+        //Cursor cursor=estadodao.carregaEstados();
+
+        serviceBO=new MunicipioServiceBO(getBaseContext());
+        Cursor cursor=serviceBO.getEstadoDAO().carregaEstados();
+
+
+        String[] queryCols=new String[]{"_id", "nome"};
+        String[] adapterCols = new String[]{"nome"};
+        int[] adapterRowViews=new int[]{android.R.id.text1};
+        //Cursor cursor=estadodao.carregaEstados();
+
+        SimpleCursorAdapter sca=new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, cursor, adapterCols, adapterRowViews,0);
+        sca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        estadoSpinner.setAdapter(sca);
+
+
+
+        sca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        estadoSpinner.setAdapter(sca);
+
+
+
         //IMPLEMENTANDO
-        //TESTE
+        //FUNCIONANDO
+        /*
         String[] arrayLoco=new String[] {"Peidão","Leitãozin"};
 
         Spinner estadoSpinner = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
@@ -44,20 +78,7 @@ public class MunicipioCadastroActivity extends Activity {
         adapterX.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         estadoSpinner.setAdapter(adapterX);
-
-        //TESTE PARA PREENCHIMENTO DE SPINNER DINAMICO
-        //EXEMPLO
-        //Creamos el cursor
-        /*
-        Cursor c = baseDatos.rawQuery("select id AS _id, nombre from comidas", null);
-        //Creamos el adaptador
-        SimpleCursorAdapter adapter2 = new SimpleCursorAdapter(this,android.R.layout.simple_spinner_item,c,new String[] {"nombre"},    new int[] {android.R.id.text1});
-        //Añadimos el layout para el menú
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Le indicamos al spinner el adaptador a usar
-        prueba.setAdapter(adapter2);
         */
-        //FIM
 
 
 
@@ -86,25 +107,12 @@ public class MunicipioCadastroActivity extends Activity {
 
         });
 
+
+
+
+
+
     }
 }
 
 
-        /*
-        ListView lista;
-
-        MunicipioDAO crud = new MunicipioDAO(getBaseContext());
-
-        //A IDE ou a Persistencia pediu para Cursor ser final
-        final Cursor cursor = crud.carregaEstados();
-
-        String[] nomeCampos = new String[] {Constantes.ID, Constantes.NOME_MUNICIPIO};
-        int[] idViews = new int[] {R.id.idMunicipio, R.id.nomeMunicipio};
-
-        //NECESSARIO FAZER O UPDGRADE DA API PARA USAR O SimpleCursorAdapter'
-        SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
-                R.layout.consulta_municipio,cursor,nomeCampos,idViews, 0);
-
-        lista = (ListView)findViewById(R.id.listView);
-        lista.setAdapter(adaptador);
-        */

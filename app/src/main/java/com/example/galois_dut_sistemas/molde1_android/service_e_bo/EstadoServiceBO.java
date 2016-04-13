@@ -26,13 +26,6 @@ public class EstadoServiceBO {
 
 
 
-   /* public EstadoDAO getDao() {
-        return dao;
-    }
-
-    public void setDao(EstadoDAO dao) {
-        this.dao = dao;
-    }*/
 
 
 }

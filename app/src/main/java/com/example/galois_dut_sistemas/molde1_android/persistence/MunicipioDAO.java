@@ -43,18 +43,5 @@ public class MunicipioDAO {
         }
     }
 
-    public Cursor carregaEstados(){
 
-        //Retorna dos IDs e dos Titulos
-        Cursor cursor;
-        String[] campos =  {Constantes.ID,Constantes.NOME_MUNICIPIO};
-        db = banco.getReadableDatabase();
-        cursor = db.query(Constantes.TABELA_MUNICIPIOS, campos, null, null, null, null, null, null);
-
-        if(cursor!=null){
-            cursor.moveToFirst();
-        }
-        db.close();
-        return cursor;
-    }
 }
