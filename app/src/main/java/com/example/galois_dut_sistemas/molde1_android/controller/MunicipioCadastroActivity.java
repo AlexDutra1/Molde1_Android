@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.galois_dut_sistemas.molde1_android.MainActivity;
 import com.example.galois_dut_sistemas.molde1_android.R;
+import com.example.galois_dut_sistemas.molde1_android.model.Estado;
 import com.example.galois_dut_sistemas.molde1_android.model.Municipio;
 import com.example.galois_dut_sistemas.molde1_android.persistence.Constantes;
 import com.example.galois_dut_sistemas.molde1_android.persistence.CriaBanco;
@@ -33,6 +34,7 @@ public class MunicipioCadastroActivity extends Activity {
     private MunicipioForm formulario= new MunicipioForm();
     private MunicipioServiceBO serviceBO;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,21 @@ public class MunicipioCadastroActivity extends Activity {
 
         serviceBO=new MunicipioServiceBO(getBaseContext());
         Cursor cursor=serviceBO.getEstadoDAO().carregaEstados();
+
+        //Navegando pelo Cursor
+        /*
+        while(cursor.moveToNext()){
+            //Prenchendo um objeto do tipo pessoa com os dados recuperados do banco de dados
+            Estado estado = new Estado();
+            estado.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+            System.out.println("LACO WHILE: " + estado.getNome());
+            //estado.setId(cursor.getInt(cursor.getColumnIndex("id")));
+
+            estado.setNome(cursor.getString(cursor.getPosition()));
+            //estado.setNome(cursor.getString(cursor.get));
+
+        }
+        */
 
         String[] queryCols=new String[]{"_id", "nome"};
         String[] adapterCols = new String[]{"nome"};
@@ -82,7 +99,7 @@ public class MunicipioCadastroActivity extends Activity {
 
         //CONVERTER PARA SPINNER
         //MOSTRA A POSICAO NA LISTA
-        Spinner nomeestado = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
+        final Spinner nomeestado = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
         nomeestado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             int pos = 0;
@@ -91,7 +108,22 @@ public class MunicipioCadastroActivity extends Activity {
                     AdapterView<?> parent, View view, int position, long id) {
                 pos = position;
 
-                Toast.makeText(getApplicationContext(), "Valor convertido: "+position, Toast.LENGTH_LONG).show();
+                Toast.makeText(parent.getContext(),
+                        "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
+
+                        Toast.LENGTH_SHORT).show();
+
+                String teste= parent.getItemAtPosition(pos).toString();
+                //TENTATIVA DE ADICIONAR UM ESTADO AO MUNICIPIO
+                //formulario.getMunicipio().getEstado().setIdEstado(teste.toLong());
+
+                //String teste= parent.getItemAtPosition(pos).toString();
+                System.out.println("ID: " + id);
+                Municipio mun= new Municipio();
+               // mun.setEstado(id);
+               // mun.setEstado(()teste);
+
+                Toast.makeText(getApplicationContext(), "PRECISA SER O NOME CLICADO: "+nomeestado.getSelectedItem().toString()+"Valor convertido: " + position, Toast.LENGTH_LONG).show();
 
             }
 
@@ -101,13 +133,10 @@ public class MunicipioCadastroActivity extends Activity {
 
             }
 
-
         });
 
 
-
-
-        }
     }
+}
 
 

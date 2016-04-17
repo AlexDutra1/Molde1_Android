@@ -47,7 +47,7 @@ public class EstadoDAO {
     public Cursor carregaEstados(){
 
         //Retorna dos IDs e dos Titulos
-        String[] campos =  {Constantes.ID,Constantes.NOME_ESTADO};
+        String[] campos =  {Constantes.ID_ESTADO,Constantes.NOME_ESTADO};
         db = banco.getReadableDatabase();
         cursor = db.query(Constantes.TABELA_ESTADOS, campos, null, null, null, null, null, null);
 

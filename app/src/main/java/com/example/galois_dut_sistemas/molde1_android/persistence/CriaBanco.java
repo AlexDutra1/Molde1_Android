@@ -20,15 +20,27 @@ public class CriaBanco extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String sql = "CREATE TABLE "+Constantes.TABELA_ESTADOS+"("
-                + Constantes.ID + " integer primary key autoincrement,"
+                + Constantes.ID_ESTADO + " integer primary key autoincrement,"
                 + Constantes.NOME_ESTADO + " text,"
                 + Constantes.SIGLA + " text"
                 +")";
 
+
         String sql2 = "CREATE TABLE "+Constantes.TABELA_MUNICIPIOS+"("
-                + Constantes.ID + " integer primary key autoincrement,"
-                + Constantes.NOME_MUNICIPIO + " text"
+                + Constantes.ID_MUNICIPIO + " integer primary key autoincrement,"
+                + Constantes.NOME_MUNICIPIO + " text,"
                 +")";
+        /*
+        //SQL COM RELACIONAMENTOS
+        String sql2 = "CREATE TABLE "+Constantes.TABELA_MUNICIPIOS+"("
+                + Constantes.ID_MUNICIPIO + " integer primary key autoincrement,"
+                + Constantes.NOME_MUNICIPIO + " text,"
+                + "CONSTRAINT"+Constantes.ESTADO + "REFERENCES estados(_id)"
+                +")";
+        */
+        //FOREIGN KEY(codigoUsuario) REFERENCES CadUsuario(codigoUsuario));",
+        //CONSTRAINT fk_casa_id REFERENCES casa(id)
+        //FOREIGN KEY(id) REFERENCES teste(id_estado),
 
         db.execSQL(sql);
         db.execSQL(sql2);
@@ -37,8 +49,8 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_ESTADOS);
-        //db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_MUNICIPIOS);
-        //onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_ESTADOS);
+        db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_MUNICIPIOS);
+        onCreate(db);
     }
 }
