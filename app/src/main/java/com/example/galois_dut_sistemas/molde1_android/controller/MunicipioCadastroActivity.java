@@ -31,8 +31,8 @@ import com.example.galois_dut_sistemas.molde1_android.service_e_bo.MunicipioServ
  */
 public class MunicipioCadastroActivity extends Activity {
 
-    private MunicipioForm formulario= new MunicipioForm();
     private MunicipioServiceBO serviceBO;
+    private MunicipioForm form=new MunicipioForm();
 
 
     @Override
@@ -42,6 +42,9 @@ public class MunicipioCadastroActivity extends Activity {
 
         //CARREGA O SPINNER COM NOME DOS ESTADOS
         Spinner estadoSpinner = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
+        EditText nomeMunicipio = (EditText) findViewById(R.id.editTextNomeMunicipio);
+
+        form.getMunicipio().setNome(nomeMunicipio.getText().toString());
 
         serviceBO=new MunicipioServiceBO(getBaseContext());
         Cursor cursor=serviceBO.getEstadoDAO().carregaEstados();
@@ -75,19 +78,16 @@ public class MunicipioCadastroActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                EditText nomeMunicipio = (EditText) findViewById(R.id.editTextNomeMunicipio);
 
 
-                formulario.getMunicipio().setNome(nomeMunicipio.getText().toString());
-
-                //formulario.getMunicipio().setEstado(nomeestado.getText().toString());
-
-                System.out.println("NOME: " + formulario.getMunicipio().getNome());
-
+                //Precisamos de formulario sim
 
                 //PERSISTE OS DADOS
                 serviceBO = new MunicipioServiceBO(getBaseContext());
-                String resultado = serviceBO.getDao().insereDado(formulario.getMunicipio().getNome());
+                String resultado = serviceBO.getDao().insereDado(form.getMunicipio());
+
+
+
 
                 //Exibe FAIXA DE MODAL NO RODAPÉ
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
@@ -113,15 +113,21 @@ public class MunicipioCadastroActivity extends Activity {
 
                         Toast.LENGTH_SHORT).show();
 
+                //TESTE DE ATRIBUICAO
+                //Long idEstado=parent.getItemAtPosition(pos).toString();
+                String idEstado=nomeestado.getItemAtPosition(pos).toString();
+                System.out.println("ID TESTE: "+idEstado);
+                //form.getMunicipio().getEstado().setIdEstado(idEstado);
+
                 String teste= parent.getItemAtPosition(pos).toString();
                 //TENTATIVA DE ADICIONAR UM ESTADO AO MUNICIPIO
                 //formulario.getMunicipio().getEstado().setIdEstado(teste.toLong());
 
-                //String teste= parent.getItemAtPosition(pos).toString();
-                System.out.println("ID: " + id);
-                Municipio mun= new Municipio();
-               // mun.setEstado(id);
-               // mun.setEstado(()teste);
+
+
+                //exemplo
+                //spinner.getSelectedItem().toString();
+                //instead of spinner.getItemAtPosition(mSpinnerSpeciesId).toString();
 
                 Toast.makeText(getApplicationContext(), "PRECISA SER O NOME CLICADO: "+nomeestado.getSelectedItem().toString()+"Valor convertido: " + position, Toast.LENGTH_LONG).show();
 

@@ -47,8 +47,10 @@ public class EstadoCadastroActivity extends Activity {
 
                 //PERSISTE OS DADOS
                 serviceBO=new EstadoServiceBO(getBaseContext());
+
                 String resultado=serviceBO.getDao().insereDado(formulario.getEstado().getNome(),
                         formulario.getEstado().getSigla());
+
 
                 //Exibe FAIXA DE MODAL NO RODAPÉ
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();

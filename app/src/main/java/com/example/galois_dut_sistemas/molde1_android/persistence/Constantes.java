@@ -17,6 +17,6 @@ public class Constantes {
     public static final String ID_MUNICIPIO = "_id"; //Convencao de identificador
     public static final String NOME_MUNICIPIO = "nome";
     //TEM UM ESTADO
-    public static final String ESTADO="fk_estado_id";
+    public static final String MUNICIPIO_TEM_ESTADO="fk_estado_id";
 
 }

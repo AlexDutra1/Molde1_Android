@@ -24,12 +24,21 @@ public class EstadoDAO {
         ContentValues valores;
         long resultado;
 
+
+
         db = banco.getWritableDatabase();
+
+        //Cria as tabelas
+        banco.onCreate(db);
+
+
         valores = new ContentValues();
         valores.put(Constantes.NOME_ESTADO, nome);
         valores.put(Constantes.SIGLA, sigla);
 
-        resultado = db.insertOrThrow(Constantes.TABELA_ESTADOS, null, valores);
+        resultado = db.insert(Constantes.TABELA_ESTADOS, null, valores);
+        //resultado = db.insertOrThrow(Constantes.TABELA_ESTADOS, null, valores);
+        //long resultado = db.insert("viagem", null, values);
 
         db.close();
 

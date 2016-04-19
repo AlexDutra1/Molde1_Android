@@ -13,44 +13,48 @@ public class CriaBanco extends SQLiteOpenHelper {
     public static final int VERSAO = 1;
 
     public CriaBanco(Context context){
-        super(context, NOME_BANCO,null,VERSAO);
+        super(context, NOME_BANCO, null, VERSAO);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sql = "CREATE TABLE "+Constantes.TABELA_ESTADOS+"("
+    String sql = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_ESTADOS+"("
                 + Constantes.ID_ESTADO + " integer primary key autoincrement,"
                 + Constantes.NOME_ESTADO + " text,"
                 + Constantes.SIGLA + " text"
                 +")";
 
-
-        String sql2 = "CREATE TABLE "+Constantes.TABELA_MUNICIPIOS+"("
-                + Constantes.ID_MUNICIPIO + " integer primary key autoincrement,"
-                + Constantes.NOME_MUNICIPIO + " text,"
-                +")";
-        /*
-        //SQL COM RELACIONAMENTOS
-        String sql2 = "CREATE TABLE "+Constantes.TABELA_MUNICIPIOS+"("
-                + Constantes.ID_MUNICIPIO + " integer primary key autoincrement,"
-                + Constantes.NOME_MUNICIPIO + " text,"
-                + "CONSTRAINT"+Constantes.ESTADO + "REFERENCES estados(_id)"
-                +")";
-        */
-        //FOREIGN KEY(codigoUsuario) REFERENCES CadUsuario(codigoUsuario));",
-        //CONSTRAINT fk_casa_id REFERENCES casa(id)
-        //FOREIGN KEY(id) REFERENCES teste(id_estado),
-
         db.execSQL(sql);
+
+        //TENTATIVA DE RELACIONAMENTO
+        String sql2 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_MUNICIPIOS+"("
+                + Constantes.ID_MUNICIPIO + " integer primary key autoincrement,"
+                + Constantes.NOME_MUNICIPIO + " text,"
+                + ""+Constantes.MUNICIPIO_TEM_ESTADO+" integer,"
+                + "foreign key ("+Constantes.MUNICIPIO_TEM_ESTADO+") references "+Constantes.TABELA_ESTADOS+" ("+Constantes.ID_ESTADO+")"
+                +")";
         db.execSQL(sql2);
+        System.out.println("STRING SQL2: " + sql2);
+
+
+
+/*
+        String sql2 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_MUNICIPIOS+" ("
+                + Constantes.ID_MUNICIPIO + " integer primary key autoincrement,"
+                + Constantes.NOME_MUNICIPIO + " text"
+                +")";
+
+        db.execSQL(sql2);
+*/
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_ESTADOS);
-        db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_MUNICIPIOS);
+        //db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_ESTADOS);
+        //db.execSQL("DROP TABLE IF EXISTS" + Constantes.TABELA_MUNICIPIOS);
         onCreate(db);
     }
 }

@@ -19,16 +19,23 @@ public class MunicipioDAO {
         banco = new CriaBanco(context);
     }
 
-    public String insereDado(String nome){
+    public String insereDado(Municipio municipio){
 
         ContentValues valores;
         long resultado;
 
-        db = banco.getWritableDatabase();
-        valores = new ContentValues();
-        valores.put(Constantes.NOME_MUNICIPIO, nome);
 
-        resultado = db.insertOrThrow(Constantes.TABELA_MUNICIPIOS, null, valores);
+
+        db = banco.getWritableDatabase();
+
+        //Cria as tabelas
+        banco.onCreate(db);
+
+        valores = new ContentValues();
+        valores.put(Constantes.NOME_MUNICIPIO, municipio.getNome());
+
+        resultado = db.insert(Constantes.TABELA_MUNICIPIOS, null, valores);
+        //resultado = db.insertOrThrow(Constantes.TABELA_MUNICIPIOS, null, valores);
 
         db.close();
 
