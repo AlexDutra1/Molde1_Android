@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.galois_dut_sistemas.molde1_android.model.Estado;
+
 /**
  * Created by galois on 09/04/16.
  */
@@ -53,10 +55,26 @@ public class EstadoDAO {
         }
     }
 
+    public Cursor consultaEstadoPorId(Long id){
+
+        //Retorna dos IDs e dos Titulos
+        String[] campos =  {Constantes.ID_ESTADO,Constantes.ID_ESTADO};
+        db = banco.getReadableDatabase();
+        cursor = db.query(Constantes.TABELA_ESTADOS, campos, null, null, null, null, null, null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+
+    }
+
     public Cursor carregaEstados(){
 
         //Retorna dos IDs e dos Titulos
         String[] campos =  {Constantes.ID_ESTADO,Constantes.NOME_ESTADO};
+
         db = banco.getReadableDatabase();
         cursor = db.query(Constantes.TABELA_ESTADOS, campos, null, null, null, null, null, null);
 
@@ -66,4 +84,6 @@ public class EstadoDAO {
         db.close();
         return cursor;
     }
+
+
 }

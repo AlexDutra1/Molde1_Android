@@ -35,35 +35,28 @@ public class MunicipioCadastroActivity extends Activity {
     private MunicipioForm form=new MunicipioForm();
 
 
+    //ASSOCIACAO DE COMPONENTES
+
+    EditText nomeMunicipio;
+    Spinner estadoSpinner;
+
+    public void carregaEstados(){}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastra_municipio);
 
-        //CARREGA O SPINNER COM NOME DOS ESTADOS
-        Spinner estadoSpinner = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
-        EditText nomeMunicipio = (EditText) findViewById(R.id.editTextNomeMunicipio);
+        estadoSpinner = (Spinner) findViewById(R.id.spinnerCadastraMunicipio);
 
-        form.getMunicipio().setNome(nomeMunicipio.getText().toString());
 
+        //CARREGA ESTADOS NO SPINNER
         serviceBO=new MunicipioServiceBO(getBaseContext());
-        Cursor cursor=serviceBO.getEstadoDAO().carregaEstados();
+        Cursor cursor;
+        cursor=serviceBO.getEstadoDAO().carregaEstados();
 
-        //Navegando pelo Cursor
-        /*
-        while(cursor.moveToNext()){
-            //Prenchendo um objeto do tipo pessoa com os dados recuperados do banco de dados
-            Estado estado = new Estado();
-            estado.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-            System.out.println("LACO WHILE: " + estado.getNome());
-            //estado.setId(cursor.getInt(cursor.getColumnIndex("id")));
 
-            estado.setNome(cursor.getString(cursor.getPosition()));
-            //estado.setNome(cursor.getString(cursor.get));
-
-        }
-        */
-
+        //COLUNAS QUE VOU USAR DO CURSOR
         String[] queryCols=new String[]{"_id", "nome"};
         String[] adapterCols = new String[]{"nome"};
         int[] adapterRowViews=new int[]{android.R.id.text1};
@@ -71,6 +64,7 @@ public class MunicipioCadastroActivity extends Activity {
         SimpleCursorAdapter sca=new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, cursor, adapterCols, adapterRowViews,0);
         sca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         estadoSpinner.setAdapter(sca);
+        //FIM DO CARREGAMENTO DO SPINNER
 
         //EFETUA CADASTRO
         Button btCadastrar = (Button) findViewById(R.id.buttonCadastraMunicipio);
@@ -78,16 +72,13 @@ public class MunicipioCadastroActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-
-
-                //Precisamos de formulario sim
+                //ASSOCIACAO DE COMPONENTES
+                nomeMunicipio = (EditText) findViewById(R.id.editTextNomeMunicipio);
+                form.getMunicipio().setNome(nomeMunicipio.getText().toString());
 
                 //PERSISTE OS DADOS
                 serviceBO = new MunicipioServiceBO(getBaseContext());
                 String resultado = serviceBO.getDao().insereDado(form.getMunicipio());
-
-
-
 
                 //Exibe FAIXA DE MODAL NO RODAPÉ
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
@@ -112,22 +103,57 @@ public class MunicipioCadastroActivity extends Activity {
                         "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
 
                         Toast.LENGTH_SHORT).show();
+/*
 
-                //TESTE DE ATRIBUICAO
-                //Long idEstado=parent.getItemAtPosition(pos).toString();
-                String idEstado=nomeestado.getItemAtPosition(pos).toString();
-                System.out.println("ID TESTE: "+idEstado);
-                //form.getMunicipio().getEstado().setIdEstado(idEstado);
-
-                String teste= parent.getItemAtPosition(pos).toString();
-                //TENTATIVA DE ADICIONAR UM ESTADO AO MUNICIPIO
-                //formulario.getMunicipio().getEstado().setIdEstado(teste.toLong());
-
+                //cursor.moveToFirst();
+                System.out.println("Cursor: " + cursor);
+                System.out.println("Cursor getColumn: "+cursor.getColumnNames());
+                System.out.println("Cursor getLong 0: "+cursor.getLong(0));
+                System.out.println("Cursor getString 1: " + cursor.getString(1));
+                System.out.println("Cursor getString 2: " + cursor.getColumnIndex("nome"));
+                //form.getMunicipio().getEstado().setIdEstado(cursor.getLong(0));
+*/
 
 
-                //exemplo
-                //spinner.getSelectedItem().toString();
-                //instead of spinner.getItemAtPosition(mSpinnerSpeciesId).toString();
+
+                Long id2= nomeestado.getSelectedItemId();
+                form.getEstado().setIdEstado(id2);
+                form.getMunicipio().setEstado(form.getEstado());
+
+//                form.getMunicipio().getEstado().setIdEstado(id2);
+
+
+
+
+                //form.getMunicipio().getEstado().setIdEstado(id2);
+                //System.out.println("ID ID: " + id2);
+                /*
+
+                String nome2= (String) nomeestado.getSelectedItem();
+                Long id2= nomeestado.getSelectedItemId();
+                int posicao=nomeestado.getSelectedItemPosition();
+                System.out.println("ITEM SELECIONADO: " + nome2);
+                System.out.println("ID DO ITEM SELECIONADO: " + id2);
+                System.out.println("POSICAO DO ITEM SELECIONADO: " + posicao);
+
+             cursor.moveToFirst();
+            while(!cursor.isAfterLast()) {
+              JSONObject obj = new JSONObject();
+
+              try{
+                // As colunas são recuperadas na ordem que foram selecionadas
+                obj.put("nome", cursor.getString(0));
+                obj.put("descricao",cursor.getString(1));
+              }catch (JSONException e) {
+              }
+
+              result.add(obj);
+
+              cursor.moveToNext();
+            }
+
+            cursor.close();
+                */
 
                 Toast.makeText(getApplicationContext(), "PRECISA SER O NOME CLICADO: "+nomeestado.getSelectedItem().toString()+"Valor convertido: " + position, Toast.LENGTH_LONG).show();
 

@@ -24,15 +24,15 @@ public class MunicipioDAO {
         ContentValues valores;
         long resultado;
 
-
-
         db = banco.getWritableDatabase();
 
         //Cria as tabelas
         banco.onCreate(db);
 
         valores = new ContentValues();
+        valores.put(Constantes.ID_MUNICIPIO, municipio.getIdMunicipio());
         valores.put(Constantes.NOME_MUNICIPIO, municipio.getNome());
+        valores.put(Constantes.MUNICIPIO_TEM_ESTADO, municipio.getEstado().getIdEstado());
 
         resultado = db.insert(Constantes.TABELA_MUNICIPIOS, null, valores);
         //resultado = db.insertOrThrow(Constantes.TABELA_MUNICIPIOS, null, valores);
