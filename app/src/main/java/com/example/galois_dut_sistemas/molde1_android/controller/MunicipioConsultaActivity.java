@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.galois_dut_sistemas.molde1_android.R;
@@ -23,7 +24,19 @@ public class MunicipioConsultaActivity extends Activity {
         setContentView(R.layout.consulta_municipio);
 
 
+        EditText consultaEstadoDoMunicipio = (EditText) findViewById(R.id.consultaEstadoDoMunicipio);
 
+
+
+
+
+
+
+
+
+
+
+        //CARREGA O LISVIEW
         MunicipioDAO crud = new MunicipioDAO(getBaseContext());
 
         //A IDE ou a Persistencia pediu para Cursor ser final

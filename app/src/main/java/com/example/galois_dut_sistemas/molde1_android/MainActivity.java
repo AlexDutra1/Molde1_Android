@@ -84,6 +84,40 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        //CADASTRO ENDEREÇO
+        Button btCadastrarEndereco = (Button) findViewById(R.id.buttonConsultarMunicipio);
+        btConsultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(MainActivity.this, MunicipioConsultaActivity.class);
+                startActivity(intent);
+
+                //Finaliza a activity anterior
+                //finish();
+
+            }
+
+        });
+
+        //CONSULTA ENDEREÇO
+        Button btConsultarEndereco = (Button) findViewById(R.id.buttonConsultarMunicipio);
+        btConsultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(MainActivity.this, MunicipioConsultaActivity.class);
+                startActivity(intent);
+
+                //Finaliza a activity anterior
+                //finish();
+
+            }
+
+        });
+
     }
 
     @Override

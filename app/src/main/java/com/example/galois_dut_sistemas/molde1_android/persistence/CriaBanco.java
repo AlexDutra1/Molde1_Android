@@ -40,17 +40,6 @@ public class CriaBanco extends SQLiteOpenHelper {
         db.execSQL(sql2);
         System.out.println("STRING SQL2: " + sql2);
 
-
-
-/*
-        String sql2 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_MUNICIPIOS+" ("
-                + Constantes.ID_MUNICIPIO + " integer primary key autoincrement,"
-                + Constantes.NOME_MUNICIPIO + " text"
-                +")";
-
-        db.execSQL(sql2);
-*/
-
     }
 
 

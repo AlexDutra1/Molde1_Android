@@ -53,7 +53,7 @@ public class MunicipioDAO {
     public Cursor carregaMunicipios(){
 
         //Retorna dos IDs e dos Titulos
-        String[] campos =  {Constantes.ID_MUNICIPIO,Constantes.NOME_MUNICIPIO};
+        String[] campos =  {Constantes.ID_MUNICIPIO,Constantes.NOME_MUNICIPIO,Constantes.MUNICIPIO_TEM_ESTADO};
 
         db = banco.getReadableDatabase();
 
