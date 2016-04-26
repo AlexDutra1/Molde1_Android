@@ -22,23 +22,24 @@ public class MunicipioConsultaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consulta_municipio);
 
-/*
+
 
         MunicipioDAO crud = new MunicipioDAO(getBaseContext());
 
         //A IDE ou a Persistencia pediu para Cursor ser final
-        final Cursor cursor = crud.carregaEstados();
+        final Cursor cursor = crud.carregaMunicipios();
 
-        String[] nomeCampos = new String[] {Constantes.ID, Constantes.NOME_MUNICIPIO};
-        int[] idViews = new int[] {R.id.idMunicipio, R.id.nomeMunicipio};
+        //Campos que serão usados no cabeçalho das colunas
+        String[] nomeCampos = new String[] { Constantes.NOME_MUNICIPIO};
+        int[] idViews = new int[] { R.id.nomeMunicipio};
 
-        //NECESSARIO FAZER O UPDGRADE DA API PARA USAR O SimpleCursorAdapter'
+        //Monta um layout_municipios dentro do consulta_municipio
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
-                R.layout.consulta_municipio,cursor,nomeCampos,idViews, 0);
+                R.layout.layout_municipios,cursor,nomeCampos,idViews, 0);
 
         lista = (ListView)findViewById(R.id.listView);
-        //  lista.setAdapter(adaptador);
-*/
+        lista.setAdapter(adaptador);
+
 
 
 

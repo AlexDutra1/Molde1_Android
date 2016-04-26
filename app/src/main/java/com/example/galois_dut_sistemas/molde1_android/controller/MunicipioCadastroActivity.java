@@ -104,7 +104,6 @@ public class MunicipioCadastroActivity extends Activity {
 
                         Toast.LENGTH_SHORT).show();
 /*
-
                 //cursor.moveToFirst();
                 System.out.println("Cursor: " + cursor);
                 System.out.println("Cursor getColumn: "+cursor.getColumnNames());
@@ -113,47 +112,9 @@ public class MunicipioCadastroActivity extends Activity {
                 System.out.println("Cursor getString 2: " + cursor.getColumnIndex("nome"));
                 //form.getMunicipio().getEstado().setIdEstado(cursor.getLong(0));
 */
-
-
-
                 Long id2= nomeestado.getSelectedItemId();
                 form.getEstado().setIdEstado(id2);
                 form.getMunicipio().setEstado(form.getEstado());
-
-//                form.getMunicipio().getEstado().setIdEstado(id2);
-
-
-
-
-                //form.getMunicipio().getEstado().setIdEstado(id2);
-                //System.out.println("ID ID: " + id2);
-                /*
-
-                String nome2= (String) nomeestado.getSelectedItem();
-                Long id2= nomeestado.getSelectedItemId();
-                int posicao=nomeestado.getSelectedItemPosition();
-                System.out.println("ITEM SELECIONADO: " + nome2);
-                System.out.println("ID DO ITEM SELECIONADO: " + id2);
-                System.out.println("POSICAO DO ITEM SELECIONADO: " + posicao);
-
-             cursor.moveToFirst();
-            while(!cursor.isAfterLast()) {
-              JSONObject obj = new JSONObject();
-
-              try{
-                // As colunas são recuperadas na ordem que foram selecionadas
-                obj.put("nome", cursor.getString(0));
-                obj.put("descricao",cursor.getString(1));
-              }catch (JSONException e) {
-              }
-
-              result.add(obj);
-
-              cursor.moveToNext();
-            }
-
-            cursor.close();
-                */
 
                 Toast.makeText(getApplicationContext(), "PRECISA SER O NOME CLICADO: "+nomeestado.getSelectedItem().toString()+"Valor convertido: " + position, Toast.LENGTH_LONG).show();
 
