@@ -41,8 +41,8 @@ public class EstadoConsultaActivity extends Activity {
         cursor=serviceBO.getDao().carregaEstados();
 
         //COLUNAS QUE VOU USAR DO CURSOR
-        String[] queryCols=new String[]{"_id", "nome"};
-        String[] adapterCols = new String[]{"nome"};
+        String[] queryCols=new String[]{"_id", "nome_estado"};
+        String[] adapterCols = new String[]{"nome_estado"};
         int[] adapterRowViews=new int[]{android.R.id.text1};
 
         SimpleCursorAdapter sca=new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, cursor, adapterCols, adapterRowViews,0);
@@ -53,24 +53,6 @@ public class EstadoConsultaActivity extends Activity {
 
         ////////////////////////////////////////////////////////////////////////////////////////////
 
-
-        //CARREGA O LISTVIEW
-        MunicipioDAO crud = new MunicipioDAO(getBaseContext());
-
-        //A IDE ou a Persistencia pediu para Cursor ser final
-        final Cursor cursor2 = crud.carregaListaDeMunicipiosDoEstado(null);
-
-        //SELECIONA QUAL COLUNA DO CURSOR VOCE DESEJA USAR
-        String[] nomeCampos = new String[] {Constantes.NOME_MUNICIPIO};
-        int[] idViews = new int[] { R.id.textViewNomesDosMunicipios};
-
-        //Monta um layout_municipios dentro do consulta_municipio
-        SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
-                R.layout.layout_estados,cursor2,nomeCampos,idViews, 0);
-
-        lista = (ListView)findViewById(R.id.listViewDeEstados);
-        lista.setAdapter(adaptador);
-        //FIM DO CARREGAMENTO
 
         //CONVERTER PARA SPINNER
         //MOSTRA A POSICAO NA LISTA
@@ -84,21 +66,27 @@ public class EstadoConsultaActivity extends Activity {
                     AdapterView<?> parent, View view, int position, long id) {
                 pos = position;
 
-                Toast.makeText(parent.getContext(),
-                        "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
 
-                        Toast.LENGTH_SHORT).show();
-/*
-                //cursor.moveToFirst();
-                System.out.println("Cursor: " + cursor);
-                System.out.println("Cursor getColumn: "+cursor.getColumnNames());
-                System.out.println("Cursor getLong 0: "+cursor.getLong(0));
-                System.out.println("Cursor getString 1: " + cursor.getString(1));
-                System.out.println("Cursor getString 2: " + cursor.getColumnIndex("nome"));
-                //form.getMunicipio().getEstado().setIdEstado(cursor.getLong(0));
-*/
-                Long id2 = estadoParaPesquisa.getSelectedItemId();
-                form.getEstado().setIdEstado(id2);
+                //CARREGA O LISTVIEW
+                MunicipioDAO crud = new MunicipioDAO(getBaseContext());
+
+                //A IDE ou a Persistencia pediu para Cursor ser final
+                final Cursor cursor2 = crud.carregaListaDeMunicipiosDoEstado(estadoParaPesquisa.getSelectedItemId());
+
+                //SELECIONA QUAL COLUNA DO CURSOR VOCE DESEJA USAR
+                String[] nomeCampos = new String[] {Constantes.NOME_MUNICIPIO};
+                int[] idViews = new int[] { R.id.textViewNomesDosMunicipios};
+
+                //Monta um layout_municipios dentro do consulta_municipio
+                SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
+                        R.layout.layout_estados,cursor2,nomeCampos,idViews, 0);
+
+                lista = (ListView)findViewById(R.id.listViewDeEstados);
+                lista.setAdapter(adaptador);
+                //FIM DO CARREGAMENTO
+
+                //Long id2 = estadoParaPesquisa.getSelectedItemId();
+                //form.getEstado().setIdEstado(id2);
                 //form.getMunicipio().setEstado(form.getEstado());
 
                 Toast.makeText(getApplicationContext(), "PRECISA SER O NOME CLICADO: " + estadoParaPesquisa.getSelectedItem().toString() + "Valor convertido: " + position, Toast.LENGTH_LONG).show();

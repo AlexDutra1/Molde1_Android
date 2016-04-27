@@ -64,11 +64,11 @@ public class MunicipioDAO {
         if(cursor!=null){
             cursor.moveToFirst();
         }
-        db.close();
+        //db.close();
         return cursor;
     }
 
-    public Cursor carregaListaDeMunicipiosDoEstado(Estado estado){
+    public Cursor carregaListaDeMunicipiosDoEstado(Long id){
 
         //Retorna dos IDs e dos Titulos
 /*
@@ -76,15 +76,17 @@ public class MunicipioDAO {
                 Constantes.NOME_MUNICIPIO};
 */
         //Consultar SQL PURA
+        //SEM REGISTROS DUPLICADOS
         Cursor cursor;
         db = banco.getReadableDatabase();
         //cursor = db.query(Constantes.TABELA_MUNICIPIOS, campos, null, null, null, null, null, null);
-        cursor = db.rawQuery("SELECT * FROM municipios join estados WHERE fk_estado_id = ?", new String[] {"2"});
+        cursor = db.rawQuery("SELECT * FROM municipios join estados WHERE fk_estado_id = ? group by nome_municipio\n" +
+                "order by nome_municipio", new String[] {""+id});
 
         if(cursor!=null){
             cursor.moveToFirst();
         }
-        db.close();
+        //db.close();
         return cursor;
     }
 

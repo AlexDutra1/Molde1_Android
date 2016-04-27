@@ -57,8 +57,8 @@ public class MunicipioCadastroActivity extends Activity {
 
 
         //COLUNAS QUE VOU USAR DO CURSOR
-        String[] queryCols=new String[]{"_id", "nome"};
-        String[] adapterCols = new String[]{"nome"};
+        String[] queryCols=new String[]{"_id", "nome_estado"};
+        String[] adapterCols = new String[]{"nome_estado"};
         int[] adapterRowViews=new int[]{android.R.id.text1};
 
         SimpleCursorAdapter sca=new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, cursor, adapterCols, adapterRowViews,0);
