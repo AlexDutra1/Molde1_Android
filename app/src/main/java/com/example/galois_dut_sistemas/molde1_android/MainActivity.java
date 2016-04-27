@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import com.example.galois_dut_sistemas.molde1_android.controller.EstadoCadastroActivity;
+import com.example.galois_dut_sistemas.molde1_android.controller.EstadoConsultaActivity;
 import com.example.galois_dut_sistemas.molde1_android.controller.MunicipioCadastroActivity;
 import com.example.galois_dut_sistemas.molde1_android.controller.MunicipioConsultaActivity;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //ESTADO
+        //CADASTRA ESTADO
         Button btCadastrarEstado = (Button) findViewById(R.id.buttonCadastrarEstado);
         btCadastrarEstado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +50,25 @@ public class MainActivity extends AppCompatActivity {
                 //finish();
 
                //Faixa de mensagem no rodapé da tela
+                /*
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+            }
+        });
+
+        //CONSULTA ESTADO
+        Button btConsultaEstado = (Button) findViewById(R.id.buttonConsultarEstado);
+        btConsultaEstado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, EstadoConsultaActivity.class);
+                startActivity(intent);
+
+                //Finaliza a activity anterior
+                //finish();
+
+                //Faixa de mensagem no rodapé da tela
                 /*
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/

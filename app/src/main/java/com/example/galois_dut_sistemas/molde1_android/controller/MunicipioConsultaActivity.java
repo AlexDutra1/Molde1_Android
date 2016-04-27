@@ -26,16 +26,6 @@ public class MunicipioConsultaActivity extends Activity {
 
         EditText consultaEstadoDoMunicipio = (EditText) findViewById(R.id.consultaEstadoDoMunicipio);
 
-
-
-
-
-
-
-
-
-
-
         //CARREGA O LISVIEW
         MunicipioDAO crud = new MunicipioDAO(getBaseContext());
 
@@ -53,9 +43,7 @@ public class MunicipioConsultaActivity extends Activity {
         lista = (ListView)findViewById(R.id.listView);
         lista.setAdapter(adaptador);
 
-
-
-
-
     }
+
+
 }

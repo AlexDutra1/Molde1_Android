@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.galois_dut_sistemas.molde1_android.model.Estado;
 import com.example.galois_dut_sistemas.molde1_android.model.Municipio;
 
 /**
@@ -59,6 +60,26 @@ public class MunicipioDAO {
 
         Cursor cursor;
         cursor = db.query(Constantes.TABELA_MUNICIPIOS, campos, null, null, null, null, null, null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+
+    public Cursor carregaListaDeMunicipiosDoEstado(Estado estado){
+
+        //Retorna dos IDs e dos Titulos
+/*
+        String[] campos =  {
+                Constantes.NOME_MUNICIPIO};
+*/
+        //Consultar SQL PURA
+        Cursor cursor;
+        db = banco.getReadableDatabase();
+        //cursor = db.query(Constantes.TABELA_MUNICIPIOS, campos, null, null, null, null, null, null);
+        cursor = db.rawQuery("SELECT * FROM municipios join estados WHERE fk_estado_id = ?", new String[] {"2"});
 
         if(cursor!=null){
             cursor.moveToFirst();
