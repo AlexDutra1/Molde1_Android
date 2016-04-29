@@ -11,6 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.galois_dut_sistemas.molde1_android.controller.ClienteCadastroActivity;
+import com.example.galois_dut_sistemas.molde1_android.controller.ClienteConsultaActivity;
+import com.example.galois_dut_sistemas.molde1_android.controller.EnderecoCadastroActivity;
+import com.example.galois_dut_sistemas.molde1_android.controller.EnderecoConsultaActivity;
 import com.example.galois_dut_sistemas.molde1_android.controller.EstadoCadastroActivity;
 import com.example.galois_dut_sistemas.molde1_android.controller.EstadoConsultaActivity;
 import com.example.galois_dut_sistemas.molde1_android.controller.MunicipioCadastroActivity;
@@ -35,7 +39,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //CADASTRA MUNICIPIO
+        Button btCadastrarMunicipio = (Button) findViewById(R.id.buttonCadastrarMunicipio);
+        btCadastrarMunicipio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MunicipioCadastroActivity.class);
+                startActivity(intent);
+            }
+        });
 
+
+        //CONSULTA MUNICIPIO
+        Button btConsultarMunicipio = (Button) findViewById(R.id.buttonConsultarMunicipio);
+        btConsultarMunicipio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(MainActivity.this, MunicipioConsultaActivity.class);
+                startActivity(intent);
+
+                //Finaliza a activity anterior
+                //finish();
+
+            }
+
+        });
 
         //CADASTRA ESTADO
         Button btCadastrarEstado = (Button) findViewById(R.id.buttonCadastrarEstado);
@@ -76,42 +106,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //CADASTRA MUNICIPIO
-        Button btCadastrarMunicipio = (Button) findViewById(R.id.buttonCadastrarMunicipio);
-        btCadastrarMunicipio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MunicipioCadastroActivity.class);
-                startActivity(intent);
-            }
-        });
 
-
-        //CONSULTA MUNICIPIO
-        Button btConsultar = (Button) findViewById(R.id.buttonConsultarMunicipio);
-        btConsultar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intent = new Intent(MainActivity.this, MunicipioConsultaActivity.class);
-                startActivity(intent);
-
-                //Finaliza a activity anterior
-                //finish();
-
-            }
-
-        });
 
         //CADASTRO ENDEREÇO
-        Button btCadastrarEndereco = (Button) findViewById(R.id.buttonConsultarMunicipio);
-        btConsultar.setOnClickListener(new View.OnClickListener() {
+        Button btCadastrarEndereco = (Button) findViewById(R.id.buttonCadastrarEndereco);
+        btCadastrarEndereco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(MainActivity.this, MunicipioConsultaActivity.class);
+                Intent intent = new Intent(MainActivity.this, EnderecoCadastroActivity.class);
                 startActivity(intent);
 
                 //Finaliza a activity anterior
@@ -122,13 +126,46 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //CONSULTA ENDEREÇO
-        Button btConsultarEndereco = (Button) findViewById(R.id.buttonConsultarMunicipio);
-        btConsultar.setOnClickListener(new View.OnClickListener() {
+        Button btConsultarEndereco = (Button) findViewById(R.id.buttonConsultarEndereco);
+        btConsultarEndereco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(MainActivity.this, MunicipioConsultaActivity.class);
+                Intent intent = new Intent(MainActivity.this, EnderecoConsultaActivity.class);
+                startActivity(intent);
+
+                //Finaliza a activity anterior
+                //finish();
+
+            }
+
+        });
+
+        //CADASTRA CLIENTE
+        Button btCadastraCliente = (Button) findViewById(R.id.buttonCadastraCliente);
+        btCadastraCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(MainActivity.this, ClienteCadastroActivity.class);
+                startActivity(intent);
+
+                //Finaliza a activity anterior
+                //finish();
+
+            }
+
+        });
+
+        //CONSULTA CLIENTE
+        Button btConsultaCliente = (Button) findViewById(R.id.buttonConsultaCliente);
+        btConsultaCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, ClienteConsultaActivity.class);
                 startActivity(intent);
 
                 //Finaliza a activity anterior

@@ -28,4 +28,23 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText2" />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEscolheEstado"
+        android:spinnerMode="dropdown" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEscolheMunicipio"
+        android:spinnerMode="dropdown" />
+
+    <Button
+        android:layout_width="294dp"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar"
+        android:id="@+id/button5"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
