@@ -13,7 +13,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/editTextLagradouro"
         android:layout_gravity="top" />
 
     <TextView
@@ -26,13 +26,27 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2" />
+        android:id="@+id/editTextBairro" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Selecione o Estado"
+        android:id="@+id/textView3" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerEscolheEstado"
         android:spinnerMode="dropdown" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Selecione o Municipio"
+        android:id="@+id/textView15" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -41,10 +55,10 @@
         android:spinnerMode="dropdown" />
 
     <Button
-        android:layout_width="294dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:text="Cadastrar"
-        android:id="@+id/button5"
+        android:id="@+id/buttonEfetuarCadastro"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

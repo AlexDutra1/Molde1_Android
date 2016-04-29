@@ -54,7 +54,7 @@ public class MunicipioConsultaActivity extends Activity {
 
 
 
-        //CARREGA ESTADOS NO SPINNER
+        //CARREGA MUNICIPIOS NO SPINNER
         estadoSpinner3 = (Spinner) findViewById(R.id.spinnerConsultaMunicipio);
         serviceBO=new MunicipioServiceBO(getBaseContext());
         Cursor cursor3;

@@ -123,7 +123,8 @@
         android:text="Consultar"
         android:id="@+id/buttonConsultaCliente"
         android:layout_alignTop="@+id/buttonCadastraCliente"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/buttonConsultarEndereco"
+        android:layout_alignStart="@+id/buttonConsultarEndereco" />
 
     <TextView
         android:layout_width="wrap_content"

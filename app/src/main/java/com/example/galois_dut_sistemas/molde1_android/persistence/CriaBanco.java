@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CriaBanco extends SQLiteOpenHelper {
 
     public static final String NOME_BANCO = "banco.db";
-    public static final int VERSAO = 4;
+    public static final int VERSAO = 5;
 
     public CriaBanco(Context context){
         super(context, NOME_BANCO, null, VERSAO);
@@ -27,7 +27,7 @@ public class CriaBanco extends SQLiteOpenHelper {
                 +")";
 
         db.execSQL(sql);
-        System.out.println("STRING SQL2: " + sql);
+        System.out.println("STRING SQL1: " + sql);
 
         //TABELA MUNICIPIOS COM RELACIONAMENTO
         String sql2 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_MUNICIPIOS+"("
@@ -40,6 +40,16 @@ public class CriaBanco extends SQLiteOpenHelper {
         db.execSQL(sql2);
         System.out.println("STRING SQL2: " + sql2);
 
+        //TABELA MUNICIPIOS COM RELACIONAMENTO
+        String sql3 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_ENDERECOS+"("
+                + Constantes.ID_ENDERECO + " integer primary key autoincrement,"
+                + Constantes.LAGRADOURO_ENDERECO + " text,"
+                + Constantes.BAIRRO_ENDERECO + " text"
+                 +")";
+
+        db.execSQL(sql3);
+        System.out.println("STRING SQL3: " + sql3);
+
     }
 
 
@@ -48,6 +58,7 @@ public class CriaBanco extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + Constantes.TABELA_ESTADOS);
         db.execSQL("DROP TABLE IF EXISTS " + Constantes.TABELA_MUNICIPIOS);
+        db.execSQL("DROP TABLE IF EXISTS " + Constantes.TABELA_ENDERECOS);
         onCreate(db);
     }
 }

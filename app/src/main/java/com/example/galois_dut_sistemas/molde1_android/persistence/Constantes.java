@@ -19,4 +19,10 @@ public class Constantes {
     //TEM UM ESTADO
     public static final String MUNICIPIO_TEM_ESTADO="fk_estado_id";
 
+    //ENDERECO
+    public static final String TABELA_ENDERECOS = "enderecos";
+    public static final String ID_ENDERECO = "_id"; //Convencao de identificador
+    public static final String LAGRADOURO_ENDERECO="lagradouro";
+    public static final String BAIRRO_ENDERECO="bairro";
+
 }
