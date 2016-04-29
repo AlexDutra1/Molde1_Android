@@ -12,29 +12,6 @@
         android:layout_alignParentTop="true">
 
 
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/consultaEstadoDoMunicipio"
-            android:layout_below="@+id/nomeMunicipio"
-            android:layout_marginTop="56dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Consultar"
-            android:id="@+id/button"
-            android:layout_below="@+id/consultaEstadoDoMunicipio"
-            android:layout_alignLeft="@+id/consultaEstadoDoMunicipio"
-            android:layout_alignStart="@+id/consultaEstadoDoMunicipio"
-            android:layout_marginTop="46dp" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,8 +27,19 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relative1"
         android:id="@+id/listView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spinnerConsultaMunicipio" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerConsultaMunicipio"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/relative1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

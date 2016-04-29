@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Selecione o Estado"
+        android:text="Selecione o Municipio"
         android:id="@+id/textView9" />
 
     <Spinner
@@ -15,13 +15,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinnerConsultaEstado"
         android:spinnerMode="dropdown" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Consultar"
-        android:id="@+id/button2" />
 
     <RelativeLayout
         android:layout_width="match_parent"

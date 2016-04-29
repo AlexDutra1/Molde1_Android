@@ -85,4 +85,19 @@ public class EstadoDAO {
         return cursor;
     }
 
+    public Cursor consultaEstadoPeloMunicipio(Long id){
+        Cursor cursor ,cursor2;
+
+        //EXEMPLO COM SUBCONSULTA SQL
+        db = banco.getReadableDatabase();
+        cursor = db.rawQuery("SELECT * FROM estados join municipios WHERE estados._id = (SELECT fk_estado_id FROM municipios WHERE municipios._id = ? )  group by nome_estado\n order by nome_estado", new String[]{"" + id});
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        //db.close();
+        return cursor;
+
+    }
+
 }
