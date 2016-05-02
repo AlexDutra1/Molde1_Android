@@ -79,6 +79,7 @@ public class MunicipioDAO {
         //SEM REGISTROS DUPLICADOS
         Cursor cursor;
         db = banco.getReadableDatabase();
+
         //cursor = db.query(Constantes.TABELA_MUNICIPIOS, campos, null, null, null, null, null, null);
         cursor = db.rawQuery("SELECT * FROM municipios join estados WHERE fk_estado_id = ? group by nome_municipio\n" +
                 "order by nome_municipio", new String[] {""+id});

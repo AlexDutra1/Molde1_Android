@@ -5,11 +5,21 @@ package com.example.galois_dut_sistemas.molde1_android.model;
  */
 public class Endereco {
 
+    private Long idEndereco;
     private String lagradouro;
     private String bairro;
     private String cep;
     private Estado estado;
     private Municipio municipio;
+
+
+    public Long getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Long idEndereco) {
+        this.idEndereco = idEndereco;
+    }
 
     public String getLagradouro() {
         return lagradouro;

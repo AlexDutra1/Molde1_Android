@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CriaBanco extends SQLiteOpenHelper {
 
     public static final String NOME_BANCO = "banco.db";
-    public static final int VERSAO = 5;
+    public static final int VERSAO = 7;
 
     public CriaBanco(Context context){
         super(context, NOME_BANCO, null, VERSAO);
@@ -41,14 +41,41 @@ public class CriaBanco extends SQLiteOpenHelper {
         System.out.println("STRING SQL2: " + sql2);
 
         //TABELA MUNICIPIOS COM RELACIONAMENTO
+        //BACKUP
+        /*
         String sql3 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_ENDERECOS+"("
                 + Constantes.ID_ENDERECO + " integer primary key autoincrement,"
                 + Constantes.LAGRADOURO_ENDERECO + " text,"
                 + Constantes.BAIRRO_ENDERECO + " text"
                  +")";
+        */
 
-        db.execSQL(sql3);
+        String sql3 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_ENDERECOS+"("
+                + Constantes.ID_ENDERECO + " integer primary key autoincrement,"
+                + Constantes.LAGRADOURO_ENDERECO + " text,"
+                + Constantes.BAIRRO_ENDERECO + " text,"
+                + ""+Constantes.ENDERECO_TEM_ESTADO+" integer,"
+                + ""+Constantes.ENDERECO_TEM_MUNICIPIO+" integer,"
+                + "foreign key ("+Constantes.ENDERECO_TEM_ESTADO+") references "+Constantes.TABELA_ESTADOS+" ("+Constantes.ID_ESTADO+"),"
+                + "foreign key ("+Constantes.ENDERECO_TEM_MUNICIPIO+") references "+Constantes.TABELA_MUNICIPIOS+" ("+Constantes.ID_MUNICIPIO+")"
+                +")";
+
+        /*
+        BACKUP
+        String sql3 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_ENDERECOS+"("
+                + Constantes.ID_ENDERECO + " integer primary key autoincrement,"
+                + Constantes.LAGRADOURO_ENDERECO + " text,"
+                + Constantes.BAIRRO_ENDERECO + " text,"
+                + ""+Constantes.ENDERECO_TEM_ESTADO+" integer"
+                + "foreign key ("+Constantes.ENDERECO_TEM_ESTADO+") references "+Constantes.TABELA_ESTADOS+" ("+Constantes.ID_ESTADO+"),"
+                + ""+Constantes.ENDERECO_TEM_MUNICIPIO+" integer"
+                + "foreign key ("+Constantes.ENDERECO_TEM_MUNICIPIO+") references "+Constantes.TABELA_MUNICIPIOS+" ("+Constantes.ID_MUNICIPIO+")"
+                +")";
+*/
+
         System.out.println("STRING SQL3: " + sql3);
+        db.execSQL(sql3);
+
 
     }
 

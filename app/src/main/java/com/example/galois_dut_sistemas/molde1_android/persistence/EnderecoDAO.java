@@ -34,8 +34,12 @@ public class EnderecoDAO {
 
 
         valores = new ContentValues();
+        valores.put(Constantes.ID_ENDERECO, endereco.getIdEndereco());
         valores.put(Constantes.LAGRADOURO_ENDERECO, endereco.getLagradouro());
-        //valores.put(Constantes.SIGLA, sigla);
+        valores.put(Constantes.BAIRRO_ENDERECO, endereco.getBairro());
+        valores.put(Constantes.ENDERECO_TEM_ESTADO, endereco.getEstado().getIdEstado());
+        valores.put(Constantes.ENDERECO_TEM_MUNICIPIO, endereco.getMunicipio().getIdMunicipio());
+
 
         resultado = db.insert(Constantes.TABELA_ENDERECOS, null, valores);
         //resultado = db.insertOrThrow(Constantes.TABELA_ESTADOS, null, valores);

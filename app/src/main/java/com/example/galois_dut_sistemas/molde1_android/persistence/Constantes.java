@@ -16,7 +16,7 @@ public class Constantes {
     public static final String TABELA_MUNICIPIOS = "municipios";
     public static final String ID_MUNICIPIO = "_id"; //Convencao de identificador
     public static final String NOME_MUNICIPIO = "nome_municipio";
-    //TEM UM ESTADO
+    //MUNICITPIO TEM UM ESTADO
     public static final String MUNICIPIO_TEM_ESTADO="fk_estado_id";
 
     //ENDERECO
@@ -24,5 +24,9 @@ public class Constantes {
     public static final String ID_ENDERECO = "_id"; //Convencao de identificador
     public static final String LAGRADOURO_ENDERECO="lagradouro";
     public static final String BAIRRO_ENDERECO="bairro";
+    //ENDERECO TEM UM ESTADO
+    public static final String ENDERECO_TEM_ESTADO="fk_endereco_estado_id";
+    //ENDERECO TEM UM MUNICIPIO
+    public static final String ENDERECO_TEM_MUNICIPIO="fk_endereco_municipio_id";
 
 }
