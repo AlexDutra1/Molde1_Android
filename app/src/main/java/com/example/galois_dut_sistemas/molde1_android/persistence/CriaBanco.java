@@ -40,16 +40,6 @@ public class CriaBanco extends SQLiteOpenHelper {
         db.execSQL(sql2);
         System.out.println("STRING SQL2: " + sql2);
 
-        //TABELA MUNICIPIOS COM RELACIONAMENTO
-        //BACKUP
-        /*
-        String sql3 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_ENDERECOS+"("
-                + Constantes.ID_ENDERECO + " integer primary key autoincrement,"
-                + Constantes.LAGRADOURO_ENDERECO + " text,"
-                + Constantes.BAIRRO_ENDERECO + " text"
-                 +")";
-        */
-
         String sql3 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_ENDERECOS+"("
                 + Constantes.ID_ENDERECO + " integer primary key autoincrement,"
                 + Constantes.LAGRADOURO_ENDERECO + " text,"
@@ -59,19 +49,6 @@ public class CriaBanco extends SQLiteOpenHelper {
                 + "foreign key ("+Constantes.ENDERECO_TEM_ESTADO+") references "+Constantes.TABELA_ESTADOS+" ("+Constantes.ID_ESTADO+"),"
                 + "foreign key ("+Constantes.ENDERECO_TEM_MUNICIPIO+") references "+Constantes.TABELA_MUNICIPIOS+" ("+Constantes.ID_MUNICIPIO+")"
                 +")";
-
-        /*
-        BACKUP
-        String sql3 = "CREATE TABLE IF NOT EXISTS "+Constantes.TABELA_ENDERECOS+"("
-                + Constantes.ID_ENDERECO + " integer primary key autoincrement,"
-                + Constantes.LAGRADOURO_ENDERECO + " text,"
-                + Constantes.BAIRRO_ENDERECO + " text,"
-                + ""+Constantes.ENDERECO_TEM_ESTADO+" integer"
-                + "foreign key ("+Constantes.ENDERECO_TEM_ESTADO+") references "+Constantes.TABELA_ESTADOS+" ("+Constantes.ID_ESTADO+"),"
-                + ""+Constantes.ENDERECO_TEM_MUNICIPIO+" integer"
-                + "foreign key ("+Constantes.ENDERECO_TEM_MUNICIPIO+") references "+Constantes.TABELA_MUNICIPIOS+" ("+Constantes.ID_MUNICIPIO+")"
-                +")";
-*/
 
         System.out.println("STRING SQL3: " + sql3);
         db.execSQL(sql3);
