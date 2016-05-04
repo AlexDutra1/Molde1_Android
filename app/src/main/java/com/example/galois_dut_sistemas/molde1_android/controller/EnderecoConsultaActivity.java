@@ -1,6 +1,7 @@
 package com.example.galois_dut_sistemas.molde1_android.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -8,10 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.galois_dut_sistemas.molde1_android.R;
+import com.example.galois_dut_sistemas.molde1_android.persistence.Constantes;
 import com.example.galois_dut_sistemas.molde1_android.persistence.EnderecoDAO;
 import com.example.galois_dut_sistemas.molde1_android.persistence.MunicipioDAO;
 import com.example.galois_dut_sistemas.molde1_android.service_e_bo.MunicipioServiceBO;
@@ -36,6 +39,7 @@ public class EnderecoConsultaActivity extends Activity {
     EditText editTextLagradouro;
     EditText editTextBairro;
     Cursor cursor40;
+    private ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,8 @@ public class EnderecoConsultaActivity extends Activity {
         spinnerEscolheEstado = (Spinner) findViewById(R.id.ConsultaspinnerEscolheEstado);
         spinnerEscolheMunicipio = (Spinner) findViewById(R.id.ConsultaspinnerEscolheMunicipio);
 
-        editTextLagradouro = (EditText) findViewById(R.id.editTextLagradouro);
-        editTextBairro = (EditText) findViewById(R.id.editTextBairro);
+        editTextLagradouro = (EditText) findViewById(R.id.ConsultaeditText);
+        editTextBairro = (EditText) findViewById(R.id.ConsultaeditText2);
 
         //CARREGA ESTADOS NO SPINNER
         serviceBO = new MunicipioServiceBO(getBaseContext());
@@ -78,27 +82,9 @@ public class EnderecoConsultaActivity extends Activity {
         spinnerEscolheMunicipio.setAdapter(scaMunicipio);
         //FIM DO CARREGAMENTO DO SPINNER
 
-
-        Button btCadastrar = (Button) findViewById(R.id.Consultabutton5);
-        btCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                formulario.getEndereco().setLagradouro(editTextLagradouro.getText().toString());
-                formulario.getEndereco().setBairro(editTextBairro.getText().toString());
-
-                //PERSISTE OS DADOS
-                EnderecoDAO enderecoDAO = new EnderecoDAO(getBaseContext());
-                enderecoDAO.insereDado(formulario.getEndereco());
-
-            }
-
-        });
-
         //CONVERTER PARA SPINNER
         //MOSTRA A POSICAO NA LISTA
         spinnerEscolheEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
 
             int pos = 0;
 
@@ -129,6 +115,46 @@ public class EnderecoConsultaActivity extends Activity {
             }
 
         });
+
+        //CONSULTA CLIENTE
+        Button btConsultaEndereco = (Button) findViewById(R.id.buttonConsultaCliente);
+        btConsultaEndereco.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                formulario.getEndereco().setLagradouro(editTextLagradouro.getText().toString());
+                formulario.getEndereco().setBairro(editTextBairro.getText().toString());
+
+                //CARREGA O LISTVIEW
+                EnderecoDAO crud = new EnderecoDAO(getBaseContext());
+
+                //A IDE ou a Persistencia pediu para Cursor ser final
+                final Cursor cursorConsultaEndereco = crud.consultaEndereco(formulario.getEndereco());
+
+
+                //SELECIONA QUAL COLUNA DO CURSOR VOCE DESEJA USAR
+                String[] nomeCampos = new String[] {Constantes.LAGRADOURO_ENDERECO};
+                int[] idViews = new int[] { R.id.textViewLagradourosEnderecos};
+
+                //Monta um layout_municipios dentro do consulta_municipio
+                SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
+                        R.layout.layout_enderecos,cursorConsultaEndereco,nomeCampos,idViews, 0);
+
+                lista = (ListView)findViewById(R.id.listViewDeEnderecos);
+                lista.setAdapter(adaptador);
+                //FIM DO CARREGAMENTO
+
+            }
+
+        });
+
+
+
+
+
+
+
     }
 
     public void carregaMunicipios(Cursor cursor3) {
@@ -144,6 +170,8 @@ public class EnderecoConsultaActivity extends Activity {
         spinnerEscolheMunicipio.setAdapter(sca2);
         //FIM DO CARREGAMENTO DO SPINNER
     }
+
+
 
 
 }

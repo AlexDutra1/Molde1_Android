@@ -58,6 +58,21 @@ public class EnderecoDAO {
         }
     }
 
+    public Cursor consultaEndereco(Endereco endereco){
+        Cursor cursor ,cursor2;
+
+        //EXEMPLO COM SUBCONSULTA SQL
+        db = banco.getReadableDatabase();
+        cursor = db.rawQuery("SELECT * FROM enderecos WHERE lagradouro = ? group by lagradouro\n order by lagradouro", new String[]{"" + endereco.getLagradouro()});
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        //db.close();
+        return cursor;
+
+    }
+
 
 
 }

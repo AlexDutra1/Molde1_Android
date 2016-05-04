@@ -44,8 +44,18 @@
         android:layout_width="348dp"
         android:layout_height="wrap_content"
         android:text="Consultar"
-        android:id="@+id/Consultabutton5"
+        android:id="@+id/buttonConsultaCliente"
         android:layout_gravity="center_horizontal" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listViewDeEnderecos" />
+    </RelativeLayout>
 
 
 </LinearLayout>
