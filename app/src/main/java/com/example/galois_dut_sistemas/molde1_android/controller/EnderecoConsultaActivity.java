@@ -102,7 +102,7 @@ public class EnderecoConsultaActivity extends Activity {
 
                 //CARREGA MUNICIPIOS NO SPINNER
                 cursor40 = teste.carregaListaDeMunicipiosDoEstado(spinnerEscolheMunicipio.getSelectedItemId());
-                carregaMunicipios(cursor40);
+                //carregaMunicipios(cursor40);
 
 
             }

@@ -68,7 +68,7 @@ public class EnderecoDAO {
         if(cursor!=null){
             cursor.moveToFirst();
         }
-        //db.close();
+        db.close();
         return cursor;
 
     }
